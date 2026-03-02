@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: shoppingapp
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/shop_db
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+  cache:
+    type: caffeine
+
+  logging:
+    level:
+      root: INFO
+      com.demo.shoppingapp: DEBUG
