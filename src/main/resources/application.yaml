@@ -1,6 +1,7 @@
 spring:
   application:
     name: shoppingapp
+    port: 8090
 
   datasource:
     url: jdbc:postgresql://localhost:5433/shop_db
@@ -23,7 +24,20 @@ spring:
   cache:
     type: caffeine
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/shopping-realm
+
+server:
+  port: 8090
+
 logging:
   level:
     root: INFO
     com.demo.shoppingapp: DEBUG
+
+app:
+  cors:
+    allowed-origins: "http://localhost:3000,http://localhost:8080"
