@@ -1,10 +1,9 @@
 package com.demo.shoppingapp.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(
@@ -12,19 +11,24 @@ import lombok.Setter;
         indexes = {
                 @Index(name = "idx_product_name", columnList = "name")
         }
-)@AllArgsConstructor
-@NoArgsConstructor
+)
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
-    private double price;
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal price;
 
-    private int stock;
+    @Column(nullable = false)
+    private Integer stock;
 }
