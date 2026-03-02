@@ -1,14 +1,27 @@
 package com.demo.shoppingapp.mapper;
 
-import com.demo.shoppingapp.dto.product.ProductRequest;
-import com.demo.shoppingapp.dto.product.ProductResponse;
+import com.demo.shoppingapp.dto.request.CreateProductRequest;
+import com.demo.shoppingapp.dto.response.ProductResponse;
 import com.demo.shoppingapp.model.Product;
-import org.mapstruct.Mapper;
+import org.mapstruct.*;
 
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ProductMapper {
 
-    Product mapToProduct(ProductRequest request);
+    @Mapping(target = "inStock", expression = "java(product.getStockQuantity() > 0)")
+    ProductResponse toResponse(Product product);
 
-    ProductResponse mapToProductResponse(Product product);
+    List<ProductResponse> toResponseList(List<Product> products);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "updatedAt", ignore = true)
+    @Mapping(target = "active", constant = "true")
+    @Mapping(target = "version", ignore = true)
+    Product toEntity(CreateProductRequest request);
+
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateEntityFromRequest(CreateProductRequest request, @MappingTarget Product product);
 }

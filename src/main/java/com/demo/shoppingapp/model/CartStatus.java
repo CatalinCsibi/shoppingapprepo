@@ -1,7 +1,8 @@
 package com.demo.shoppingapp.model;
 
 public enum CartStatus {
-
     ACTIVE,
-    ORDERED
+    CHECKED_OUT,
+    ABANDONED,
+    MERGED
 }

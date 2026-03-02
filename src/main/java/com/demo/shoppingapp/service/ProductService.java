@@ -1,37 +1,24 @@
 package com.demo.shoppingapp.service;
 
-import com.demo.shoppingapp.model.Product;
-import com.demo.shoppingapp.repository.ProductRepository;
+import com.demo.shoppingapp.dto.request.CreateProductRequest;
+import com.demo.shoppingapp.dto.request.ProductSearchRequest;
+import com.demo.shoppingapp.dto.response.PagedResponse;
+import com.demo.shoppingapp.dto.response.ProductResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.UUID;
 
-@Service
-public class ProductService {
+public interface ProductService {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductService.class);
+    PagedResponse<ProductResponse> searchProducts(ProductSearchRequest request);
 
-    private final ProductRepository repository;
+    ProductResponse getProductById(UUID id);
 
-    public ProductService(ProductRepository repository) {
-        this.repository = repository;
-    }
+    ProductResponse createProduct(CreateProductRequest request);
 
-    public Page<Product> getAllProducts(Pageable pageable) {
-        log.info("Finding all products");
-        return repository.findAll(pageable);
-    }
+    ProductResponse updateProduct(UUID id, CreateProductRequest request);
 
-    public Page<Product> findProductByName(String name, Pageable pageable) {
-        log.info("Finding product by name: {}", name);
-        return repository.findByNameContainingIgnoreCase(name, pageable);
-    }
+    void deleteProduct(UUID id);
 
-    public Product createProduct(Product product) {
-        log.info("Creating object by name: {}", product.getName());
-        return repository.save(product);
-    }
+    List<String> getAllCategories();
 }
