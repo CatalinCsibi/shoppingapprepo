@@ -4,8 +4,8 @@ spring:
     port: 8090
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/shop_db
-    username: postgres
+    url: jdbc:postgresql://localhost:5432/shop_db
+    username: cmcsibi
     password: postgres
 
   jpa:

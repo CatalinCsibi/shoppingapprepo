@@ -1,6 +1,6 @@
-How to run and configure Keycloak
+## How to run and configure Keycloak
 
-1. Install Keycloak
+### 1. Install Keycloak
    Go to:
    https://www.keycloak.org/downloads
 
@@ -15,7 +15,7 @@ How to run and configure Keycloak
     ./kc.sh add-user --username admin --password admin --roles admin 
 
 
-2. Start Keycloak:
+### 2. Start Keycloak:
    cd keycloak-25.0.0/bin and run ./kc.sh start-dev. 
     
    If the previous command does not work try using one of the following:
@@ -25,24 +25,24 @@ How to run and configure Keycloak
    b. export KEYCLOAK_ADMIN=admin export KEYCLOAK_ADMIN_PASSWORD=admin ./kc.sh start-dev
 
 
-3. Login to Keycloak:
+### 3. Login to Keycloak:
 
    Now open: http://localhost:8080
    
    Login: admin / admin
 
 
-4. Create Realm
+### 4. Create Realm
 
    Top left → dropdown → Create Realm: shopping-realm
 
 
-5. Create Roles
+### 5. Create Roles
 
    Go to: Realm → Roles → Create Role and Create: ADMIN
 
 
-6. Create User
+### 6. Create User
 
    Users → Create User
 
@@ -55,12 +55,12 @@ How to run and configure Keycloak
    Then: Credentials → Set Password → Temporary OFF
 
 
-7. Assign Role
+### 7. Assign Role
 
    Users → admin → Role Mapping → Assign Role → ADMIN
 
 
-8. Create Client:
+### 8. Create Client:
    
    a. Go to Clients → Create Client
 
@@ -72,7 +72,8 @@ How to run and configure Keycloak
 
    e. On last page we will have to configure a Redirect URI. Put something like: http://localhost:8083/callback From this URI we will be able to retrieve the Authorization Code. Click Save
 
-Connection to keycloak in our spring boot application has been configured in application.yaml:
+
+### Connection to keycloak in our spring boot application has been configured in application.yaml:
 Under spring:
 
     security:
