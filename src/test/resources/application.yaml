@@ -1,0 +1,16 @@
+spring:
+  cache:
+    type: simple
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost/.well-known/jwks.json
+
+  jpa:
+    show-sql: false
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000

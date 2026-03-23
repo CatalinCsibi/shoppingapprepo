@@ -30,7 +30,6 @@ public class CartServiceImpl implements CartService {
     private final CartMapper cartMapper;
 
     @Override
-    @Transactional(readOnly = true)
     public CartResponse getOrCreateCart(String userId) {
         ShoppingCart cart = getOrCreateActiveCart(userId);
         return cartMapper.toResponse(cart);
